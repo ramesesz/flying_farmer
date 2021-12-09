@@ -1,0 +1,5 @@
+﻿ID;name;anomalies;category;response;scientific_name
+1;Healthy;Healthy;Disease;Congratulations! Your crops are in good condition.;
+2;Leaf Blast;LeafBlast;Disease;Your crops have been infected by the rice blast fungus!;Magnaporthe oryzae
+3;Brown Spot;BrownSpot;Disease;We have detected brown spots on your crops!;Cochliobolus miyabeanus
+4;Hispa;Hispa;Disease;We have found traces of rice hispa within your crops!;Dicladispa armigera 
