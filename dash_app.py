@@ -51,7 +51,7 @@ app.layout = html.Div([
             className='contents-upload'),
         html.Div([
             dcc.Upload(id='upload-image', children=html.Div(['Drag and Drop or ', html.A('Select Files')]),
-                       multiple=False),
+                       multiple=True),
             html.Div([
                 html.H3(children='Content-Info', className='content-title'),
                 html.Div(id='output-filename-upload', children='', className='content-info'),
@@ -185,8 +185,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
             image = Image.open(bytes_image).convert('RGB')
             prediction = str(classify(image))
             print('the prediction:' + prediction)
-
-
+            re = ''
             if prediction != 'Healthy':
                 predictions.append(prediction)
                 for i in predictions:
@@ -195,6 +194,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
                 ID, category, response, scientific_name = id_extract_anomalies(prediction)
                 print('The ID: ' + str(ID))
                 print('The Category:' + str(category))
+                re = response
                 print('The Response: ' + str(response))
                 print('The Scientific Name: ' + str(scientific_name))
                 categories.append(category)
@@ -252,7 +252,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
                 date = html.H6(datetime.datetime.fromtimestamp(d))
                 pred = html.H5(prediction)
                 print('html parser for healthy: '+prediction)
-                response = html.H5(r)
+                response = html.H5(re)
                 category = html.H5('')
                 name = html.H5('')
                 cause = html.H5('')
@@ -272,7 +272,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
                 date = html.H6(datetime.datetime.fromtimestamp(d))
                 pred = html.H5(prediction)
                 print('html parser for non healthy: '+prediction)
-                response = html.H5(r)
+                response = html.H5(re)
                 category = html.H5(cat)
                 name = html.H5(na)
 
