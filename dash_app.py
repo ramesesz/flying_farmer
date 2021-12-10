@@ -184,31 +184,74 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
             bytes_image = io.BytesIO(decoded_image)
             image = Image.open(bytes_image).convert('RGB')
             prediction = str(classify(image))
-            predictions.append(prediction)
+            print('the prediction:' + prediction)
+
 
             if prediction != 'Healthy':
+                predictions.append(prediction)
+                for i in predictions:
+                    print('The Predictions: '+i)
+                print('result of prediction: '+prediction)
                 ID, category, response, scientific_name = id_extract_anomalies(prediction)
+                print('The ID: ' + str(ID))
+                print('The Category:' + str(category))
+                print('The Response: ' + str(response))
+                print('The Scientific Name: ' + str(scientific_name))
                 categories.append(category)
                 responses.append(response)
                 names.append(scientific_name)
-                causes.append(cause_extract(ID))
-                cures.append(cure_extract(ID))
-                preventions.append(prevention_extract(ID))
+
+                cause = cause_extract(ID)
+                print('The Cause: ' + str(cause))
+                causes.append(cause)
+
+                cure = cure_extract(ID)
+                print('The Cure: '+ cure)
+                cures.append(cure)
+
+                prevention = prevention_extract(ID)
+                print('The Prevention: '+prevention)
+                preventions.append(prevention)
+
+                resource = resource_extract(ID)
+                print('The Resource: '+resource)
                 resources.append(resource_extract(ID))
+
             else:
+                predictions.append(prediction)
+                for i in predictions:
+                    print('The Predictions: '+i)
+                print('result of prediction: '+prediction)
                 ID, category, response, scientific_name = id_extract_anomalies(prediction)
+                print('The ID: ' + str(ID))
+                print('The Category:' + str(category))
+                print('The Response: ' + str(response))
+                print('The Scientific Name: ' + str(scientific_name))
                 responses.append(response)
 
         img = html.Div()
         filename = html.H5()
-        if prediction == 'Healty':
+        date = html.H6()
+        pred = html.H5()
+        response = html.H5()
+        category = html.H5()
+        name = html.H5()
+        cause = html.H5()
+        cure = html.H5()
+        prevention = html.H5()
+        resource = html.H5()
+        print("html results declared")
+
+        if prediction == 'Healthy':
+            print('Compared Variable for html parser: '+prediction)
             for c, n, p, d, r in zip(list_of_contents, list_of_names, predictions, list_of_dates, responses):
                 img = html.Img(src=c, style={
-                    'max-width' : '65%'
+                    'max-width' : '80%'
                 })
                 filename = html.H5(n)
                 date = html.H6(datetime.datetime.fromtimestamp(d))
-                prediction = html.H5(p)
+                pred = html.H5(prediction)
+                print('html parser for healthy: '+prediction)
                 response = html.H5(r)
                 category = html.H5('')
                 name = html.H5('')
@@ -217,15 +260,18 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
                 prevention = html.H5('')
                 resource = html.H5('')
 
-            return img, filename, date, prediction, response, category, name, cause, cure, prevention, resource
+            return img, filename, date, pred, response, category, name, cause, cure, prevention, resource
+
         else:
+            print('Compared Variable for html parser: '+prediction)
             for con, fn, p, d, r, cat, na, cau, cu, pre, res  in zip(list_of_contents, list_of_names, predictions, list_of_dates, responses, categories, names, causes, cures, preventions, resources):
                 img = html.Img(src=con, style={
-                    'max-width' : '70%'
+                    'max-width' : '80%'
                 })
                 filename = html.H5(fn)
                 date = html.H6(datetime.datetime.fromtimestamp(d))
-                prediction = html.H5(p)
+                pred = html.H5(prediction)
+                print('html parser for non healthy: '+prediction)
                 response = html.H5(r)
                 category = html.H5(cat)
                 name = html.H5(na)
@@ -246,7 +292,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
                 if len(res) > 1:
                     resource = [html.H5(i) for i in res]
 
-            return img, filename, date, prediction, response, category, name, cause, cure, prevention, resource
+            return img, filename, date, pred, response, category, name, cause, cure, prevention, resource
 
 
 if __name__ == '__main__':
