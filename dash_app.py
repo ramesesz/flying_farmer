@@ -179,6 +179,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
         raise PreventUpdate
     else:
         for i in list_of_contents:
+            print(i)
             encoded_image = i.split(",")[1] # the crucial part of decode base64.
             decoded_image = base64.b64decode(encoded_image)
             bytes_image = io.BytesIO(decoded_image)
