@@ -51,7 +51,7 @@ app.layout = html.Div([
             className='contents-upload'),
         html.Div([
             dcc.Upload(id='upload-image', children=html.Div(['Drag and Drop or ', html.A('Select Files')]),
-                       multiple=True),
+                       multiple=False),
             html.Div([
                 html.H3(children='Content-Info', className='content-title'),
                 html.Div(id='output-filename-upload', children='', className='content-info'),
