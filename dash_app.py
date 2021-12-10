@@ -18,7 +18,7 @@ import torchvision.models as models
 import torchvision.transforms as T
 
 model_path = r'resnet101_model_best_checkpoint.pth'
-load = torch.load(model_path, map_location=torch.device('cpu'))
+load = torch.load(model_path, map_location=torch.device('cuda'))
 
 model = models.resnet101(pretrained=True)
 num_ftrs = model.fc.in_features
@@ -143,6 +143,8 @@ def classify(image):
     if torch.cuda.is_available():
         model.cuda()
     image = image_transforms(image)
+    if torch.cuda.is_available():
+        image = image.cuda()
     image = image.unsqueeze(0)
     output = model(image)
     _, predicted = torch.max(output.data, 1)
@@ -179,7 +181,6 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
         raise PreventUpdate
     else:
         for i in list_of_contents:
-            print(i)
             encoded_image = i.split(",")[1] # the crucial part of decode base64.
             decoded_image = base64.b64decode(encoded_image)
             bytes_image = io.BytesIO(decoded_image)
