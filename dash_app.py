@@ -218,6 +218,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
                 print('The ID: ' + str(ID))
                 print('The Category:' + str(category))
                 re = response
+
                 print('The Response: ' + str(response))
                 print('The Scientific Name: ' + str(scientific_name))
                 categories.append(category)
@@ -246,6 +247,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
                     print('The Predictions: '+i)
                 print('result of prediction: '+prediction)
                 ID, category, response, scientific_name = id_extract_anomalies(prediction)
+                re = response
                 print('The ID: ' + str(ID))
                 print('The Category:' + str(category))
                 print('The Response: ' + str(response))
@@ -256,7 +258,6 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
         filename = html.H5()
         date = html.H6()
         pred = html.H5()
-        response = html.H5()
         category = html.H5()
         name = html.H5()
         cause = html.H5()
@@ -276,6 +277,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
                 pred = html.H5(prediction)
                 print('html parser for healthy: '+prediction)
                 response = html.H5(re)
+                print('html parser of response' + re)
                 category = html.H5('')
                 name = html.H5('')
                 cause = html.H5('')
@@ -296,6 +298,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
                 pred = html.H5(prediction)
                 print('html parser for non healthy: '+prediction)
                 response = html.H5(re)
+                print('html parser of response' + re)
                 category = html.H5(cat)
                 name = html.H5(na)
 
