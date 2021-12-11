@@ -35,10 +35,12 @@ div.app-container {
 }
 
 .prediction-content {
-    display : none;
+    display : block;
+    min-height: 60px;
+    border-width: 1px;
+    border-style: dashed;
+    border-radius: 5px;
 }
-
-.prediction-dropdown:hover .prediction-content {display : block;}
 
 .logo {
     box-sizing : border-box;
@@ -99,16 +101,11 @@ div.app-container {
 }
 
 .box-info {
-    display : none;
-}
-
-.box-dropdown:hover .box-info {
     display : block;
     min-height: 60px;
     border-width: 1px;
     border-style: dashed;
     border-radius: 5px;
-    text-align: center;
 }
 
 
