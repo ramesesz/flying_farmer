@@ -18,7 +18,10 @@ import torchvision.models as models
 import torchvision.transforms as T
 
 model_path = r'resnet101_model_best_checkpoint.pth'
-load = torch.load(model_path, map_location=torch.device('cuda'))
+
+load = torch.load(model_path, map_location=torch.device('cpu'))
+if torch.cuda.is_available():
+    load = torch.load(model_path, map_location=torch.device('cuda'))
 
 model = models.resnet101(pretrained=True)
 num_ftrs = model.fc.in_features
@@ -50,29 +53,47 @@ app.layout = html.Div([
             html.Div(id='output-image-upload', children='')],
             className='contents-upload'),
         html.Div([
-            dcc.Upload(id='upload-image', children=html.Div(['Drag and Drop or ', html.A('Select Files')]),
+            dcc.Upload(id='upload-image',
+                       children=html.Div(['Drag and Drop or ', html.A('Select Files')], className='upload-image'),
                        multiple=True),
             html.Div([
                 html.H3(children='Content-Info', className='content-title'),
                 html.Div(id='output-filename-upload', children='', className='content-info'),
                 html.Div(id='output-date-upload', children='', className='content-info'),
-                html.Div(id='output-prediction-upload', children='', className='content-info')],
+                html.Div([
+                    html.H3(children='Prediction', className='prediction-title'),
+                    html.Div(id='output-prediction-upload', children='', className='prediction-content')],
+                    className='prediction-dropdown')],
                 className='image-info'),
             html.Div([
-                html.H3(children='Response', className='box-title'),
-                html.Div(id='output-response', children='', className='box-info'),
-                html.H3(children='Category', className='box-title'),
-                html.Div(id='output-category', children='', className='box-info'),
-                html.H3(children='Scientific Name', className='box-title'),
-                html.Div(id='output-scientific-name', children='', className='box-info'),
-                html.H3(children='Cause', className='box-title'),
-                html.Div(id='output-cause', children='', className='box-info'),
-                html.H3(children='Cure', className='box-title'),
-                html.Div(id='output-cure', children='', className='box-info'),
-                html.H3(children='Prevention', className='box-title'),
-                html.Div(id='output-prevention', children='', className='box-info'),
-                html.H3(children='Resources', className='box-title'),
-                html.Div(id='output-resource', children='', className='box-info')],
+                html.Div([
+                    html.H3(children='Response', className='box-title'),
+                    html.Div(id='output-response', children='', className='box-info')],
+                    className='box-dropdown'),
+                html.Div([
+                    html.H3(children='Category', className='box-title'),
+                    html.Div(id='output-category', children='', className='box-info')],
+                    className='box-dropdown'),
+                html.Div([
+                    html.H3(children='Scientific Name', className='box-title'),
+                    html.Div(id='output-scientific-name', children='', className='box-info')],
+                    className='box-dropdown'),
+                html.Div([
+                    html.H3(children='Cause', className='box-title'),
+                    html.Div(id='output-cause', children='', className='box-info')],
+                    className='box-dropdown'),
+                html.Div([
+                    html.H3(children='Cure', className='box-title'),
+                    html.Div(id='output-cure', children='', className='box-info')],
+                    className='box-dropdown'),
+                html.Div([
+                    html.H3(children='Prevention', className='box-title'),
+                    html.Div(id='output-prevention', children='', className='box-info')],
+                    className='box-dropdown'),
+                html.Div([
+                    html.H3(children='Resources', className='box-title'),
+                    html.Div(id='output-resource', children='', className='box-info')],
+                    className='box-dropdown')],
                 className='recomendation-info')],
             className='sidebar')],
         className='app-container')],

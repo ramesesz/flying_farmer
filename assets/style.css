@@ -13,18 +13,32 @@ div.app-container {
     width : 720px;
     max-width : 100%;
 }
-#upload-image {
-    height : 60px;
+.upload-image {
 
 }
+#upload-image {
+    display : block;
+    height : 60px;
+    text-align : center;
+    border-width : 1px;
+    border-radius : 5px;
+    border-style: dashed;
+    padding: 30px 10px 0px;
+}
 .content-info {
-    margin : 20px;
+    margin : 10px 0 20px;
     height : 60px;
     border-width: 1px;
     border-style: dashed;
     border-radius: 5px;
     text-align: center;
 }
+
+.prediction-content {
+    display : none;
+}
+
+.prediction-dropdown:hover .prediction-content {display : block;}
 
 .logo {
     box-sizing : border-box;
@@ -74,12 +88,22 @@ div.app-container {
 
 .box-title {
 
-
-    text-align : center;
-
 }
 
-div.box-info {
+.box-button {
+    min-height: 60px;
+    border-width: 1px;
+    border-style: dashed;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.box-info {
+    display : none;
+}
+
+.box-dropdown:hover .box-info {
+    display : block;
     min-height: 60px;
     border-width: 1px;
     border-style: dashed;
