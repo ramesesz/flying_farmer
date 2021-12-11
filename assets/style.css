@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
+body {
+    background-color: #272a31;
+}
 
 .app-body {
     font-family: open sans, sans-serif;
@@ -6,13 +10,21 @@
 div.app-container {
     display : flex;
     min-height : 100vh;
+
 }
 
 .contents-upload {
     display : block;
-    width : 720px;
+    width : 1000px;
     max-width : 100%;
+
 }
+
+#output-image-upload {
+    max-width : 100%;
+
+}
+
 .upload-image {
 
 }
@@ -25,6 +37,11 @@ div.app-container {
     border-style: dashed;
     padding: 30px 10px 0px;
 }
+
+.content-title {
+    font-family: 'Roboto', sans-serif;
+}
+
 .content-info {
     margin : 10px 0 20px;
     height : 60px;
@@ -38,7 +55,7 @@ div.app-container {
     display : block;
     min-height: 60px;
     border-width: 1px;
-    border-style: dashed;
+    border-style: inset;
     border-radius: 5px;
     padding: 5px;
 }
@@ -56,6 +73,7 @@ div.app-container {
 }
 
 .logo-title {
+    font-family: 'Bebas Neue';
     color : white;
 }
 
@@ -66,9 +84,15 @@ div.app-container {
     padding : 3rem 5%;
     max-height : 100%;
     line-height : 720px;
-
+    background-color: darkgray;
 }
 
+img {
+    max-width : 100%;
+    border-radius: 20px;
+    border-style: groove;
+    border-color: dimgray;
+}
 
 .sidebar {
     padding : 20px;
@@ -78,6 +102,7 @@ div.app-container {
     border-style : solid;
     border-radius : 20px;
     min-height : 100vh;
+    background-color: cornsilk;
 }
 
 .image-info {
@@ -105,17 +130,12 @@ div.app-container {
     display : block;
     min-height: 60px;
     border-width: 1px;
-    border-style: dashed;
+    border-style: inset;
     border-radius: 5px;
     padding: 5px;
+    background-color: gainsboro;
 }
 
-.result-info {
-    border-width: 1px;
-    border-style: dashed;
-    border-radius: 5px;
-    padding: 5px;
-}
 
 
 

@@ -269,9 +269,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
         if prediction == 'Healthy':
             print('Compared Variable for html parser: '+prediction)
             for c, n, p, d, r in zip(list_of_contents, list_of_names, predictions, list_of_dates, responses):
-                img = html.Img(src=c, style={
-                    'max-width' : '80%'
-                })
+                img = html.Img(src=c)
                 filename = html.H5(n)
                 date = html.H6(datetime.datetime.fromtimestamp(d))
                 pred = html.H5(prediction)
@@ -290,9 +288,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
         else:
             print('Compared Variable for html parser: '+prediction)
             for con, fn, p, d, r, cat, na, cau, cu, pre, res  in zip(list_of_contents, list_of_names, predictions, list_of_dates, responses, categories, names, causes, cures, preventions, resources):
-                img = html.Img(src=con, style={
-                    'max-width' : '80%'
-                })
+                img = html.Img(src=con)
                 filename = html.H5(fn)
                 date = html.H6(datetime.datetime.fromtimestamp(d))
                 pred = html.H5(prediction)
@@ -304,22 +300,33 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
 
                 cause = html.H5(cau)
                 if len(cau) > 1:
-                    cause = [html.H5(i) for i in cau]
+                    cause = parse_content(cau)
 
                 cure = html.H5(cu)
                 if len(cu) > 1:
-                    cure = [html.Div(html.H5(i), className='result-info') for i in cu]
+                    cure = parse_content(cu)
 
                 prevention = html.H5(pre)
                 if len(pre) > 1:
-                    prevention = [html.H5(i) for i in pre]
+                    prevention = parse_content(pre)
 
                 resource = html.H5(res)
                 if len(res) > 1:
-                    resource = [html.H5(i) for i in res]
+                    resource = parse_content(res)
 
             return img, filename, date, pred, response, category, name, cause, cure, prevention, resource
 
+def parse_content(source):
+    content = [html.Div(html.H5(i),
+                                     style={
+                                        'border-width': '1px',
+                                        'border-style': 'outset',
+                                        'border-radius': '5px',
+                                        'margin': '10px auto',
+                                        'padding': '0 2px 2px 5px',
+                                        'background-color': 'cornsilk'
+                                     }) for i in source]
+    return content
 
 if __name__ == '__main__':
     app.run_server(debug=True)
