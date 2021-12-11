@@ -40,6 +40,7 @@ div.app-container {
     border-width: 1px;
     border-style: dashed;
     border-radius: 5px;
+    padding: 5px;
 }
 
 .logo {
@@ -106,6 +107,14 @@ div.app-container {
     border-width: 1px;
     border-style: dashed;
     border-radius: 5px;
+    padding: 5px;
+}
+
+.result-info {
+    border-width: 1px;
+    border-style: dashed;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 

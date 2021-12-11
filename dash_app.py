@@ -308,7 +308,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
 
                 cure = html.H5(cu)
                 if len(cu) > 1:
-                    cure = [html.H5(i) for i in cu]
+                    cure = [html.Div(html.H5(i), className='result-info') for i in cu]
 
                 prevention = html.H5(pre)
                 if len(pre) > 1:
